@@ -45,32 +45,7 @@ const HeatMap: React.FC = () => {
     return result;
   }, [calendarData]);
 
-  const levelColors = [
-    'bg-white/5',
-    'bg-green-900/60',
-    'bg-green-700/70',
-    'bg-green-500/80',
-    'bg-green-400'
-  ];
 
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-  // Get month labels
-  const monthLabels = useMemo(() => {
-    const labels: { month: string; position: number }[] = [];
-    let lastMonth = -1;
-    
-    weeks.forEach((week, weekIndex) => {
-      const firstDay = new Date(week[0].date);
-      const month = firstDay.getMonth();
-      if (month !== lastMonth) {
-        labels.push({ month: months[month], position: weekIndex });
-        lastMonth = month;
-      }
-    });
-    
-    return labels;
-  }, [weeks]);
 
   const totalCompletions = calendarData.reduce((sum, day) => sum + day.count, 0);
   const activeDays = calendarData.filter(day => day.count > 0).length;
